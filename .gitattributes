@@ -1,0 +1,8 @@
+# Auto detect text files and perform LF normalization
+static/* linguist-generated
+templates/* linguist-generated
+static/css/* linguist-generated
+
+.css linguist-detectable=false
+.html linguist-detectable=false
+

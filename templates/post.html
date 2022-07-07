@@ -1,0 +1,60 @@
+{% include "header.html" %} {% import "bootstrap/wtf.html" as wtf %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{post.image}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>
+                    <h2 class="subheading">{{post.subtitle}}</h2>
+                    <span class="meta">Posted by <a href="#">{{post.author.name}}</a> on {{post.date}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>
+                    {{ post['body']|safe }}
+                </p>
+                {% if current_user.id == 1 %}
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="{{ url_for('edit_post', post_id=post.id) }}">Edit Post &rarr;</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</article>
+<hr>
+<div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7"> {% if not current_user.is_authenticated: %} <div class="row gx-4 gx-lg-5 justify-content-center text-center">
+                <a class="btn btn-primary float-right" href="{{ url_for('login')}}">Log in to leave a comment &rarr;</a>
+            </div>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            {{ wtf.quick_form(form, novalidate=False, button_map={"submit": "primary"}) }}
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='body') }} {% endif %}
+            <hr> {% for comment in post.comments: %}
+            <ul class="commentList">
+                <li>
+                    <div class="commenterImage">
+                        <img src="{{ comment.comment_author.email | gravatar }}" />
+                    </div>
+                    <div class="commentText">
+                        {{comment.text|safe}}
+                        <span class="date sub-text">{{comment.comment_author.name}}</span>
+                    </div>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}

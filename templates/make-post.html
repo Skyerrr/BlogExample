@@ -1,0 +1,33 @@
+{% import "bootstrap/wtf.html" as wtf %} {% block content %} {% include "header.html" %}
+<!-- Page Header-->
+<header class="masthead" style="">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>Create or Edit a post</h1>
+                    <h2 class="subheading">The best post!</h2>
+                    <span class="meta">Posted by <a href="#">Me!</a> on Today</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>
+                    {{ wtf.quick_form(form, novalidate=False, button_map={"submit": "primary"}) }}
+                    {{ ckeditor.load() }}
+                    {{ ckeditor.config(name='body') }}
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+<hr>
+<script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+{% endblock %}
+{% include "footer.html" %}
