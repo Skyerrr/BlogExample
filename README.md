@@ -1,4 +1,6 @@
 Blog example made with Flask.
+
+Check everything at Hereku [HERE](https://felipe-upgraded-blog.herokuapp.com)
  
 ![image](https://user-images.githubusercontent.com/88248157/177670742-5bb6c089-1757-41dd-98e5-13ab81e25235.png)
 
@@ -15,6 +17,11 @@ Blog example made with Flask.
 - Forms protected with CSRF protection using WTForms.
 - Style with CSS Bootstrap, mobile friendly.
 - Random user comment image with Gravatar.
+
+**ADMIN LOGIN**
+
+email: admin@admin.com
+pass: admin
 
 
 
